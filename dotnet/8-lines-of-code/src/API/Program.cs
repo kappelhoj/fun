@@ -11,7 +11,7 @@ handlers.Add<FetchBooksQuery, IReadOnlyCollection<Book>>((x) => FetchBooksQueryH
 
 var app = builder.Build();
 
-app.MapGet("/",  (httpContext) =>
-    Task.FromResult(handlers.Handle<FetchBooksQuery, IReadOnlyCollection<Book>>(new FetchBooksQuery(""))));
+app.MapGet("/", async () =>
+    await handlers.Handle<FetchBooksQuery, IReadOnlyCollection<Book>>(new FetchBooksQuery("")));
 
 app.Run();

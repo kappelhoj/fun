@@ -7,11 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var handlers = new Handler();
 
-handlers.Add<FetchBooksQuery, IReadOnlyCollection<Book>>((x) => FetchBooksQueryHandler.Handle(() => new BookRepository(), x));
+handlers.Add((Func<FetchBooksQuery, Task<IReadOnlyCollection<Book>>>)((x) => FetchBooksQuery.Handle(() => new BookRepository(), x)));
 
 var app = builder.Build();
 
 app.MapGet("/", async () =>
-    await handlers.Handle<FetchBooksQuery, IReadOnlyCollection<Book>>(new FetchBooksQuery("")));
+    await handlers.HandleAsync<FetchBooksQuery, IReadOnlyCollection<Book>>(new FetchBooksQuery("")));
 
 app.Run();

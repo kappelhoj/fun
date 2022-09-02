@@ -9,7 +9,7 @@
             _handlers.Add(typeof(T), handler);
         }
 
-        public Task<TResult> Handle<T,TResult>(T request)
+        public Task<TResult> HandleAsync<T,TResult>(T request)
         {
             var specificHandler = (Func<T, Task<TResult>>)_handlers[typeof(T)];
 

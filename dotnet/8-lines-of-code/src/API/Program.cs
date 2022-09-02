@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var handlers = new Handler();
 
-handlers.Add((Func<FetchBooksQuery, Task<IReadOnlyCollection<Book>>>)((x) => FetchBooksQuery.Handle(() => new BookRepository(), x)));
+handlers.Add<FetchBooksQuery,IReadOnlyCollection<Book>>((x) => FetchBooksQuery.Handle(() => new BookRepository(), x));
 
 var app = builder.Build();
 

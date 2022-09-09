@@ -9,9 +9,8 @@ public record FetchBooksQuery(string Search)
         FetchBooksQuery query)
     {
 
-        return new List<Book>() {
-            new Book { Title = "Title A" },
-            new Book { Title = "Title B" } };
+        var books = await bookRepositoryFactory().GetBooks();
+        return books.ToArray();
     }
 }
 

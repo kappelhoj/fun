@@ -1,6 +1,7 @@
-﻿using Chat.Core;
-using Chat.Core.ClientCommands;
-using Chat.Core.ServerCommands;
+﻿using Chat.Commands;
+using Chat.Commands.ClientCommands;
+using Chat.Commands.ServerCommands;
+using ChatServer.Extensions;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatServer
@@ -18,7 +19,7 @@ namespace ChatServer
                 TimeStamp = DateTimeOffset.Now
             };
 
-            await Clients.All.SendAsync(ClientCommand.ReceiveMessage.ToString(), command);
+            await Clients.All.SendCommandAsync(command);
         }
     }
 }

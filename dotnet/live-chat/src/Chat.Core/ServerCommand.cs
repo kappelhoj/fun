@@ -1,4 +1,4 @@
-﻿namespace Chat.Core
+﻿namespace Chat.Commands
 {
     public enum ServerCommand
     {

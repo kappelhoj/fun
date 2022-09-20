@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Chat.Core;
-using Chat.Core.ClientCommands;
-using Chat.Core.ServerCommands;
+using Chat.Commands;
+using Chat.Commands.ClientCommands;
+using Chat.Commands.ServerCommands;
 using Microsoft.AspNetCore.SignalR.Client;
 
 Console.WriteLine("Hello, World!");

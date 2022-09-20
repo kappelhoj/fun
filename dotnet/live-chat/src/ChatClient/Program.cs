@@ -1,4 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Chat.Core;
+using Chat.Core.ClientCommands;
+using Chat.Core.ServerCommands;
 using Microsoft.AspNetCore.SignalR.Client;
 
 Console.WriteLine("Hello, World!");
@@ -19,7 +22,8 @@ connection.Closed += async (error) =>
 await connection.StartAsync();
 
 //Connection on receive:
-connection.On<string, string>("ReceiveMessage", (user,message) => Console.WriteLine($"{user}: {message}"));
+connection.On<ReceiveMessageCommand>("ReceiveMessage", (command) => Console.WriteLine($"[{command.TimeStamp.ToString()}] {command.Username}: {command.Text}"));
 
-await connection.InvokeAsync("Sendmessage", "kappelhoj", "Hello server!");
+await connection.InvokeAsync(ServerCommand.Sendmessage.ToString(), new SendMessageCommand { Username = "kappelhoj", Text = "Hello o/"});
 
+await Task.Delay(6000);

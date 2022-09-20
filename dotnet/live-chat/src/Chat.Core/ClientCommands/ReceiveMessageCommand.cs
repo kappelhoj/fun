@@ -1,14 +1,15 @@
-﻿namespace Chat.Commands.ClientCommands
+﻿using Chat.Commands.Core;
+
+namespace Chat.Commands.ClientCommands
 {
-    public class ReceiveMessageCommand : BaseCommand
+    public sealed class ReceiveMessageCommand : ClientCommand
     {
+        public ReceiveMessageCommand() : base(ClientCommandTypes.ReceiveMessage)
+        {
+        }
+
         public string Username { get; set; }
         public string Text { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
-
-        public override string CommandName()
-        {
-            return ClientCommand.ReceiveMessage.ToString();
-        }
     }
 }

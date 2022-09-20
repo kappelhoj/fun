@@ -1,6 +1,6 @@
 ﻿namespace Chat.Commands
 {
-    public enum ClientCommand
+    public enum ClientCommandTypes
     {
         ReceiveMessage
     }

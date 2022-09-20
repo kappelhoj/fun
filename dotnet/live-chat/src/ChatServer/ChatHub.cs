@@ -1,5 +1,4 @@
-﻿using Chat.Commands;
-using Chat.Commands.ClientCommands;
+﻿using Chat.Commands.ClientCommands;
 using Chat.Commands.ServerCommands;
 using ChatServer.Extensions;
 using Microsoft.AspNetCore.SignalR;

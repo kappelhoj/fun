@@ -1,4 +1,4 @@
-﻿using Chat.Commands;
+﻿using Chat.Commands.Core;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatServer.Extensions
@@ -8,7 +8,7 @@ namespace ChatServer.Extensions
 
         public static async Task SendCommandAsync(this IClientProxy proxy, BaseCommand command)
         {
-            await proxy.SendAsync(command.CommandName(), command);
+            await proxy.SendAsync(command.CommandName, command);
         }
     }
 }

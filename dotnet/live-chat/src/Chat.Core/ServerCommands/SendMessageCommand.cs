@@ -1,13 +1,14 @@
-﻿namespace Chat.Commands.ServerCommands
+﻿using Chat.Commands.Core;
+
+namespace Chat.Commands.ServerCommands
 {
-    public class SendMessageCommand : BaseCommand
+    public sealed class SendMessageCommand : ServerCommand
     {
+        public SendMessageCommand() : base(ServerCommandTypes.Sendmessage)
+        {
+        }
+
         public string Username { get; set; }
         public string Text { get; set; }
-
-        public override string CommandName()
-        {
-            return ServerCommand.Sendmessage.ToString();
-        }
     }
 }

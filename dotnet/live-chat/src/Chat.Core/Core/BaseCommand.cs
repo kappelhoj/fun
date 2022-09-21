@@ -25,7 +25,7 @@ namespace Chat.Commands.Core
 
         private static string GetCommandName(Type type)
         {
-            // We know the type is assignable from command.
+            // type is assignable from command.
             var commandTypeName = type.Name;
 
             if (!commandTypeName.EndsWith("Command"))

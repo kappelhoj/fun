@@ -7,7 +7,7 @@ namespace ChatServer.Extensions
     {
         public static async Task SendCommandAsync(this IClientProxy proxy, ClientCommand command)
         {
-            await proxy.SendAsync(command.CommandName, command);
+            await proxy.SendAsync(command.GetCommandName(), command);
         }
     }
 }

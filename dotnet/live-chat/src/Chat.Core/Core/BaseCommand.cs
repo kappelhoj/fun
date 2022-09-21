@@ -1,12 +1,39 @@
-﻿namespace Chat.Commands.Core
-{
-    public abstract class BaseCommand
-    {
-        public string CommandName { get; private set; }
+﻿using System.Data;
 
-        public BaseCommand(string commandName)
+namespace Chat.Commands.Core
+{
+    public abstract class Command
+    {
+        public string GetCommandName()
         {
-            CommandName = commandName;
+            Type commandType = GetType();
+
+            return GetCommandName(commandType);
+        }
+
+        public static string GetCommandName<T>()
+        {
+            Type commandType = typeof(T);
+
+            if (!commandType.IsAssignableTo(typeof(Command)))
+            {
+                throw new ArgumentException($"Type {commandType.Name} does not inherit from Command");
+            };
+
+            return GetCommandName(commandType);
+        }
+
+        private static string GetCommandName(Type type)
+        {
+            // We know the type is assignable from command.
+            var commandTypeName = type.Name;
+
+            if (!commandTypeName.EndsWith("Command"))
+            {
+                throw new NotSupportedException($"Type {type.Name} must end with Command to be supported");
+            };
+
+            return commandTypeName.Remove(commandTypeName.Length - "Command".Length);
         }
     }
 }

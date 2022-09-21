@@ -1,8 +1,8 @@
 ﻿namespace Chat.Commands.Core
 {
-    public abstract class ClientCommand : BaseCommand
+    public abstract class ClientCommand : Command
     {
-        public ClientCommand(ClientCommandTypes commandName) : base(commandName.ToString())
+        public ClientCommand(ClientCommandTypes commandName)
         {
         }
     }

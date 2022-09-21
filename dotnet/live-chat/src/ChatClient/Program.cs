@@ -22,7 +22,8 @@ connection.Closed += async (error) =>
 await connection.StartAsync();
 
 //Connection on receive:
-connection.On<ReceiveMessageCommand>(ClientCommandTypes.ReceiveMessage.ToString(), (command) => Console.WriteLine($"[{command.TimeStamp.ToString()}] {command.Username}: {command.Text}"));
+connection.OnCommand<ReceiveMessageCommand>((command) => Console.WriteLine($"[{command.TimeStamp.ToString()}] {command.Username}: {command.Text}"));
+
 
 await connection.InvokeCommandAsync(new SendMessageCommand { Username = "kappelhoj", Text = "Hello o/"});
 

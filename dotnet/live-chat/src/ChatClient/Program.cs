@@ -1,7 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Chat.Commands;
+﻿using Chat.Commands;
 using Chat.Commands.ClientCommands;
-using Chat.Commands.Core;
 using Chat.Commands.ServerCommands;
 using ChatClient;
 using Microsoft.AspNetCore.SignalR.Client;

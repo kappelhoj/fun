@@ -26,5 +26,9 @@ connection.OnCommand<ReceiveMessageCommand>((command) => Console.WriteLine($"[{c
 
 
 await connection.InvokeCommandAsync(new SendMessageCommand { Username = "kappelhoj", Text = "Hello o/"});
+await connection.InvokeCommandAsync(new SendMessageCommand { Username = "fava", Text = "Hello \\o"});
+await connection.InvokeCommandAsync(new SendMessageCommand { Username = "kappelhoj", Text = "How are you doing?"});
+await connection.InvokeCommandAsync(new SendMessageCommand { Username = "fava", Text = "Not to bad."});
+await connection.InvokeCommandAsync(new SendMessageCommand { Username = "kappelhoj", Text = "Ok"});
 
 await Task.Delay(6000);

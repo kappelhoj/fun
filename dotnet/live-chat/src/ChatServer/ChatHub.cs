@@ -1,24 +1,21 @@
 ﻿using Chat.Commands.ClientCommands;
 using Chat.Commands.ServerCommands;
 using ChatServer.Extensions;
+using ChatServer.Handlers;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatServer
 {
-    public class ChatHub : Hub
+    public class ChatHub : Hub<IChatClient>
     {
-        public async Task SendMessage(SendMessageCommand messageCommand)
+        private readonly SendMessageHandler _sendMessageHandler;
+
+        public ChatHub(SendMessageHandler sendMessageHandler)
         {
-            Console.WriteLine($"Message received from '{messageCommand.Username}': {messageCommand.Text}");
-
-            var command = new ReceiveMessageCommand
-            {
-                Text = messageCommand.Text,
-                Username = messageCommand.Username,
-                TimeStamp = DateTimeOffset.Now
-            };
-
-            await Clients.All.SendCommandAsync(command);
+            _sendMessageHandler = sendMessageHandler;
         }
+
+        public async Task SendMessage(SendMessageCommand messageCommand) 
+            => await _sendMessageHandler.HandleAsync(messageCommand);
     }
 }

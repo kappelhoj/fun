@@ -1,18 +1,16 @@
 ﻿using Chat.Commands.ClientCommands;
 using Chat.Commands.ServerCommands;
-using Microsoft.AspNetCore.SignalR;
+using ChatServer.Clients;
 
 namespace ChatServer.Handlers
 {
-
     public class SendMessageHandler
     {
-        //TODO: Extract chat commands into seperate class?
-        private readonly IHubContext<ChatHub, IChatClient> _hubContext;
+        private readonly ClientBroadcaster _broadcaster;
 
-        public SendMessageHandler(IHubContext<ChatHub, IChatClient> hubContext)
+        public SendMessageHandler(ClientBroadcaster broadcaster)
         {
-            _hubContext = hubContext;
+            _broadcaster = broadcaster;
         }
 
         public async Task HandleAsync(SendMessageCommand command)
@@ -26,7 +24,7 @@ namespace ChatServer.Handlers
                 TimeStamp = DateTimeOffset.Now
             };
 
-            await _hubContext.Clients.All.ReceiveMessage(receiveMessageCommand);
+            await _broadcaster.BroadCast(receiveMessageCommand);
         }
     }
 }

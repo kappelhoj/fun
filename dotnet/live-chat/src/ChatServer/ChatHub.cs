@@ -1,4 +1,5 @@
 ﻿using Chat.Commands.ServerCommands;
+using ChatServer.Clients;
 using ChatServer.Handlers;
 using Microsoft.AspNetCore.SignalR;
 

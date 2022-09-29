@@ -1,7 +1,7 @@
 ﻿using Chat.Commands.Core;
 using Microsoft.AspNetCore.SignalR.Client;
 
-namespace ChatClient
+namespace Chat.Client
 {
     public static class HubExtensions
     {

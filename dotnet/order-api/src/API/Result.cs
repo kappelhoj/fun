@@ -1,11 +1,8 @@
-﻿using System.Net;
-
-namespace API
+﻿namespace API
 {
-    public class Result<T>
+    public record Result<T>(ResultStatusCode StatusCode)
     {
         public T? Value { get; set; }
-        public HttpStatusCode? StatusCode { get; set; } // TODO: Dont use HTTP Status codes
         public string? Message { get; set; }
     }
 }

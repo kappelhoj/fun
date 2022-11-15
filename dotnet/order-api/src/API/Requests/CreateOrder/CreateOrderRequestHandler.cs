@@ -7,18 +7,17 @@ namespace API.Requests.CreateOrder
         public async Task<Result<string>> Handle(CreateOrderRequest request, CancellationToken cancellationToken)
         {
             var validation = await new CreateOrderValidator() //TODO: This should be dependency injected
-                .ValidateAsync(request, cancellationToken); 
+                .ValidateAsync(request, cancellationToken);
 
             if (!validation.IsValid)
             {
-                return new Result<string>
+                return new Result<string>(ResultStatusCode.ValidationError)
                 {
-                    Message = validation.ToString(),
-                    StatusCode = HttpStatusCode.BadRequest
+                    Message = validation.ToString()
                 };
             }
 
-            return new Result<string> { };
+            return new Result<string>(ResultStatusCode.Success) { };
         }
 
     }

@@ -25,7 +25,6 @@ namespace API.Tests.UnitTests.Requests.CreateOrder
 
     }
 
-
     public class InvalidCreateOrderRequestData : IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
@@ -36,7 +35,7 @@ namespace API.Tests.UnitTests.Requests.CreateOrder
                 {
                     OrderItems = null,
                 },
-                "OrderItems are null"
+                "OrderItems is null"
             };
 
             yield return new object[]
@@ -46,6 +45,21 @@ namespace API.Tests.UnitTests.Requests.CreateOrder
                     OrderItems = new List<OrderItemRequest>(),
                 },
                 "OrderItems is empty"
+            };
+
+            yield return new object[]
+            {
+                new CreateOrderRequest
+                {
+                    OrderItems = new List<OrderItemRequest>
+                    {
+                        { new OrderItemRequest{ ItemId = null, Quantity = 1 }},
+                        { new OrderItemRequest{ ItemId = 1, Quantity = null }},
+                        { new OrderItemRequest{ ItemId = 1, Quantity = 0 }},
+                        { new OrderItemRequest{ ItemId = 1, Quantity = 1 }}
+                    }
+                },
+                "Items have invalid id or Quantity"
             };
         }
 

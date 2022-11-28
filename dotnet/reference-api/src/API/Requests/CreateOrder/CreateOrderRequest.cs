@@ -2,9 +2,9 @@
 
 namespace API.Requests.CreateOrder
 {
-    public class CreateOrderRequest
+    public record CreateOrderRequest
     {
-        public IEnumerable<OrderItemRequest>? OrderItems;
+        public IEnumerable<OrderItemRequest>? OrderItems { get; set; }
 
         //TODO: Buyer information
 

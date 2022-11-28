@@ -4,5 +4,8 @@
     {
         public T? Value { get; set; }
         public string? Message { get; set; }
+
+
+        public bool HasErrorStatus => StatusCode.IsErrorStatus();
     }
 }

@@ -1,0 +1,6 @@
+go 1.19
+
+use (
+	./basic-go/first-test
+	./simple-api/gin
+)
